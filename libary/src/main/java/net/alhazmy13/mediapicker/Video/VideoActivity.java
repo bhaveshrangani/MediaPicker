@@ -360,17 +360,33 @@ public class VideoActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            for (String mPath : listOfImgs) {
-                File file = new File(mPath);
-                File destinationFile;
-                if (mVideoConfig.isImgFromCamera) {
-                    destinationFile = file;
-                } else {
-                    destinationFile = new File(mVideoConfig.directory, Utility.getRandomString() + mVideoConfig.extension.getValue());
-                    FileProcessing.copyDirectory(file, destinationFile);
-                }
-                destinationPaths.add(destinationFile.getAbsolutePath());
+//             for (String mPath : listOfImgs) {
+//                 File file = new File(mPath);
+//                 File destinationFile;
+//                 if (mVideoConfig.isImgFromCamera) {
+//                     destinationFile = file;
+//                 } else {
+//                     destinationFile = new File(mVideoConfig.directory, Utility.getRandomString() + mVideoConfig.extension.getValue());
+//                     FileProcessing.copyDirectory(file, destinationFile);
+//                 }
+//                 destinationPaths.add(destinationFile.getAbsolutePath());
 
+//             }
+            try {
+                for (String mPath : listOfImgs) {
+                    File file = new File(mPath);
+                    File destinationFile;
+                    if (mVideoConfig.isImgFromCamera) {
+                        destinationFile = file;
+                    } else {
+                        destinationFile = new File(mVideoConfig.directory, net.alhazmy13.mediapicker.Utility.getRandomString() + mVideoConfig.extension.getValue());
+                        FileProcessing.copyDirectory(file, destinationFile);
+                    }
+                    destinationPaths.add(destinationFile.getAbsolutePath());
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
             return null;
