@@ -407,23 +407,27 @@ public class ImageActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            for (String mPath : listOfImgs) {
-                File file = new File(mPath);
-                File destinationFile;
-                if (mImgConfig.isImgFromCamera) {
-                    destinationFile = file;
-                } else {
-                    destinationFile = new File(mImgConfig.directory, Utility.getRandomString() + mImgConfig.extension.getValue());
-                }
-                destinationPaths.add(destinationFile.getAbsolutePath());
-                try {
-                    Utility.compressAndRotateIfNeeded(file, destinationFile, mImgConfig.compressLevel.getValue(), mImgConfig.reqWidth, mImgConfig.reqHeight);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+            //            for (String mPath : listOfImgs) {
+//                File file = new File(mPath);
+//                File destinationFile;
+//                if (mImgConfig.isImgFromCamera) {
+//                    destinationFile = file;
+//                } else {
+//                    destinationFile = new File(mImgConfig.directory, Utility.getRandomString() + mImgConfig.extension.getValue());
+//                }
+//                destinationPaths.add(destinationFile.getAbsolutePath());
+//                try {
+//                    Utility.compressAndRotateIfNeeded(file, destinationFile, mImgConfig.compressLevel.getValue(), mImgConfig.reqWidth, mImgConfig.reqHeight);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+            try {
+                destinationPaths.addAll(listOfImgs);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
             return null;
         }
 
